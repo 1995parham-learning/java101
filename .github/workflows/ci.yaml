@@ -4,8 +4,8 @@ on:
   push:
 
 jobs:
-  check:
-    name: check
+  gradle:
+    name: gradle
     runs-on: ubuntu-latest
     defaults:
       run:
