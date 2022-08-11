@@ -1,0 +1,32 @@
+---
+name: ci
+on:
+  push:
+
+jobs:
+  check:
+    name: check
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ matrix.projects }}
+    strategy:
+      matrix:
+        projects:
+          - hello
+    steps:
+      - name: checkout sources
+        uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+      - uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: current
+      - name: Test with Gradle
+        run: gradle test
+      - name: Build with Gradle
+        run: gradle build
