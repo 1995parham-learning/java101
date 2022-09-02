@@ -3,7 +3,10 @@
  */
 package kafka.producer;
 
+import java.io.IOException;
 import java.util.Properties;
+import java.util.Scanner;
+
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
@@ -17,15 +20,39 @@ public class App {
 
     var producer = new KafkaProducer<String, String>(props);
 
-    var record = new ProducerRecord<String, String>("topic", "key-1", "val-1");
+    var reader = new Scanner(System.in);
+    int i = 0;
 
-    // fire and forget
-    try {
-      producer.send(record);
-    } catch (Exception e) {
-      e.printStackTrace();
+    while (true) {
+      i++;
+
+      System.out.printf("%d > ", i);
+
+      String line = reader.nextLine();
+
+      if (line.equals("quit")) {
+        break;
+      }
+
+      var record = new ProducerRecord<String, String>("topic", String.format("l-%s", i), line);
+
+      try {
+        // fire and forget
+        // producer.send(record);
+
+        producer.send(record, (metadata, exception) -> {
+          if (exception != null) {
+            exception.printStackTrace();
+          } else {
+            System.out.printf("message offset: %d\n", metadata.offset());
+          }
+        });
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
 
     producer.close();
+    reader.close();
   }
 }

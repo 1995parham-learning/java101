@@ -17,6 +17,10 @@ repositories {
     mavenCentral()
 }
 
+run {
+    standardInput = System.in
+}
+
 dependencies {
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka
     implementation group: 'org.apache.kafka', name: 'kafka_2.13', version: '3.2.1'
