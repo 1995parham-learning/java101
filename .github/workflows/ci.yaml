@@ -14,6 +14,7 @@ jobs:
       matrix:
         projects:
           - hello
+          - kafka-producer
     steps:
       - name: checkout sources
         uses: actions/checkout@v3
