@@ -12,8 +12,8 @@ public class App {
     Properties props = new Properties();
 
     props.put("bootstrap.servers", "127.0.0.1:9092");
-    props.put("key.serializer", "org.apache.kafka.common.serilization.StringSerializer");
-    props.put("value.serializer", "org.apache.kafka.common.serilization.StringSerializer");
+    props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
     var producer = new KafkaProducer<String, String>(props);
 
