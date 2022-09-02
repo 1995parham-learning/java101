@@ -4,11 +4,28 @@
 package kafka.producer;
 
 import java.util.Properties;
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerRecord;
 
 public class App {
   public static void main(String[] args) {
     Properties props = new Properties();
 
-    props.put("bootstrap.servers", "");
+    props.put("bootstrap.servers", "127.0.0.1:9092");
+    props.put("key.serializer", "org.apache.kafka.common.serilization.StringSerializer");
+    props.put("value.serializer", "org.apache.kafka.common.serilization.StringSerializer");
+
+    var producer = new KafkaProducer<String, String>(props);
+
+    var record = new ProducerRecord<String, String>("topic", "key-1", "val-1");
+
+    // fire and forget
+    try {
+      producer.send(record);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    producer.close();
   }
 }
