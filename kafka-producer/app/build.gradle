@@ -15,6 +15,9 @@ plugins {
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+    maven {
+      url "https://packages.confluent.io/maven/"
+    }
 }
 
 run {
@@ -24,6 +27,9 @@ run {
 dependencies {
     // https://mvnrepository.com/artifact/org.apache.kafka/kafka
     implementation group: 'org.apache.kafka', name: 'kafka_2.13', version: '3.2.1'
+
+    // https://mvnrepository.com/artifact/io.confluent/kafka-json-serializer
+    implementation group: 'io.confluent', name: 'kafka-json-serializer', version: '7.2.1'
 }
 
 testing {

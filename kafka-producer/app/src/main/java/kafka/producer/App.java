@@ -3,7 +3,6 @@
  */
 package kafka.producer;
 
-import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ public class App {
 
     props.put("bootstrap.servers", "127.0.0.1:9092");
     props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-    props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+    props.put("value.serializer", "io.confluent.kafka.serializers.KafkaJsonSerializer");
 
     var producer = new KafkaProducer<String, String>(props);
 
