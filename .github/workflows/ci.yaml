@@ -15,6 +15,7 @@ jobs:
         projects:
           - hello
           - kafka-producer
+          - kafka-stream
     steps:
       - name: checkout sources
         uses: actions/checkout@v3
