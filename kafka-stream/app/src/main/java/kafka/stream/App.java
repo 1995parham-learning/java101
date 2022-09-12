@@ -33,8 +33,6 @@ public class App {
     KafkaStreams streams = new KafkaStreams(builder.build(), props);
     streams.start();
 
-    System.out.println("stream us running...");
-
     Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
 
     while (true) {
