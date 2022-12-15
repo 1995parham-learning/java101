@@ -1,6 +1,6 @@
 # Java 101
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/1995parham-learning/java101/ci?label=ci&logo=github&style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/1995parham-learning/java101/ci.yaml?label=ci&logo=github&style=flat-square&branch=main)
 
 ## Introduction
 
